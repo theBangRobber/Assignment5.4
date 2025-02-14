@@ -11,12 +11,14 @@ export default function App() {
   const [{ x, y, z }, setData] = useState({ x: 0, y: 0, z: 0 });
 
   useEffect(() => {
+    // SUBSCRIBE TO THE ACCELEROMETER LISTENER TO GET DEVICE MOVEMENT DATA AND UPDATE X, Y, Z ACCORDINGLY
     const subscription = Accelerometer.addListener(setData);
-    return () => subscription.remove();
+    return () => subscription.remove(); // CLEAN UP FUNCTION TO REMOVE LISTENER
   }, []);
 
   return (
     <View style={styles.container}>
+      <Text style={styles.title}>ACCELEROMETER</Text>
       <Text style={styles.text}>x : {x}</Text>
       <Text style={styles.text}>y : {y}</Text>
       <Text style={styles.text}>z : {z}</Text>
@@ -70,9 +72,16 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 
+  title: {
+    color: "#ff3333",
+    fontWeight: "bold",
+    marginVertical: 2,
+  },
+
   text: {
     color: "#fff",
     fontWeight: "bold",
+    marginVertical: 2,
   },
 
   buttonContainer: {
